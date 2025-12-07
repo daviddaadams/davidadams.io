@@ -2,23 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>David Adams – Data Science & Systems Builder</title>
+  <title>David Adams – Data Science & ML Systems</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="David Adams – data science master's student, systems builder, and aspiring founder working at the intersection of analytics, infrastructure, and real-world problems." />
+  <meta name="description" content="David Adams – Data Science MS student building applied ML, experimentation, and home-lab infrastructure for real-world impact." />
 
   <style>
     :root {
-      --bg: #050814;
-      --bg-alt: #090d1f;
-      --accent: #4f46e5;
-      --accent-soft: rgba(79,70,229,0.12);
+      --bg: #020016;
+      --bg-elevated: #05021f;
+      --bg-card: #080321;
+      --bg-soft: #0b0428;
+      --accent: #7c3aed;
+      --accent-soft: rgba(124, 58, 237, 0.25);
+      --accent-soft2: rgba(139, 92, 246, 0.12);
+      --accent-strong: #a855f7;
       --text: #f9fafb;
       --muted: #9ca3af;
-      --border: #111827;
+      --border: #1f2933;
       --radius-lg: 18px;
       --radius-xl: 26px;
-      --shadow-soft: 0 18px 45px rgba(0,0,0,0.45);
-      --max-width: 960px;
+      --shadow-soft: 0 22px 60px rgba(0, 0, 0, 0.8);
+      --max-width: 1080px;
     }
 
     * {
@@ -28,7 +32,9 @@
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-      background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+      background:
+        radial-gradient(circle at top left, rgba(124, 58, 237, 0.25), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(15, 23, 42, 0.9), #020016);
       color: var(--text);
       -webkit-font-smoothing: antialiased;
     }
@@ -36,15 +42,15 @@
     main {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 32px 16px 64px;
+      padding: 28px 16px 56px;
     }
 
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 32px;
-      gap: 12px;
+      margin-bottom: 26px;
+      gap: 14px;
     }
 
     .brand {
@@ -54,12 +60,17 @@
     }
 
     .avatar {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.5);
-      background: radial-gradient(circle at 30% 20%, #4f46e5, #0f172a);
-      box-shadow: 0 0 30px rgba(79,70,229,0.45);
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 25% 0%, #f97316, transparent 55%),
+        radial-gradient(circle at 80% 100%, #22c55e, transparent 55%),
+        radial-gradient(circle at 50% 50%, #4c1d95, #020016);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      box-shadow: 0 0 26px rgba(124, 58, 237, 0.85);
     }
 
     .brand-text {
@@ -70,55 +81,87 @@
 
     .brand-text span:first-child {
       font-weight: 600;
-      letter-spacing: 0.03em;
-      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      font-size: 0.85rem;
+      text-transform: uppercase;
     }
 
     .brand-text span:last-child {
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       color: var(--muted);
     }
 
     nav {
       display: flex;
-      gap: 14px;
-      font-size: 0.85rem;
+      gap: 10px;
+      font-size: 0.84rem;
+      flex-wrap: wrap;
     }
 
     nav a {
       color: var(--muted);
       text-decoration: none;
-      padding: 6px 10px;
+      padding: 6px 11px;
       border-radius: 999px;
       border: 1px solid transparent;
+      background: transparent;
     }
 
     nav a:hover {
-      border-color: rgba(148,163,184,0.4);
+      border-color: rgba(148, 163, 184, 0.6);
+      background: rgba(8, 5, 33, 0.95);
       color: #e5e7eb;
-      background: rgba(15,23,42,0.85);
+    }
+
+    @media (max-width: 720px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        width: 100%;
+      }
     }
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.3fr);
-      gap: 24px;
-      margin-bottom: 40px;
+      grid-template-columns: minmax(0, 3.1fr) minmax(0, 2.2fr);
+      gap: 22px;
+      margin-bottom: 34px;
       align-items: stretch;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 960px) {
       .hero {
         grid-template-columns: 1fr;
       }
     }
 
     .hero-main {
-      background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(3,7,18,0.98));
+      background: radial-gradient(circle at top left, rgba(88, 28, 135, 0.4), rgba(8, 4, 29, 0.98));
       border-radius: var(--radius-xl);
-      padding: 22px 22px 20px;
-      border: 1px solid var(--border);
+      padding: 22px 22px 18px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
       box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      right: 40%;
+      top: -40px;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.68), transparent 60%);
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    .hero-main-inner {
+      position: relative;
+      z-index: 1;
     }
 
     .pill {
@@ -126,76 +169,83 @@
       align-items: center;
       gap: 8px;
       border-radius: 999px;
-      padding: 4px 10px 4px 4px;
-      background: radial-gradient(circle at 0 50%, rgba(74,222,128,0.2), transparent 55%),
-                  rgba(15,23,42,0.85);
-      border: 1px solid rgba(148,163,184,0.5);
-      font-size: 0.7rem;
-      color: #cbd5f5;
-      margin-bottom: 12px;
+      padding: 3px 11px 3px 4px;
+      background:
+        radial-gradient(circle at 0 50%, rgba(56, 189, 248, 0.3), transparent 55%),
+        rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.65);
+      font-size: 0.72rem;
+      color: #e5e7eb;
+      margin-bottom: 10px;
     }
 
     .pill-dot {
       width: 11px;
       height: 11px;
       border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #22c55e, #16a34a);
-      box-shadow: 0 0 14px rgba(34,197,94,0.9);
+      background: radial-gradient(circle at 30% 20%, #22c55e, #15803d);
+      box-shadow: 0 0 14px rgba(34, 197, 94, 0.9);
     }
 
     h1 {
-      font-size: clamp(1.9rem, 3.1vw, 2.4rem);
+      font-size: clamp(1.9rem, 3.3vw, 2.4rem);
       margin: 0 0 10px;
       letter-spacing: 0.01em;
     }
 
+    .hero-title-highlight {
+      background: linear-gradient(120deg, #e5e7eb, #c4b5fd, #f97316);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
     .hero-sub {
-      font-size: 0.95rem;
+      font-size: 0.97rem;
       color: #d1d5db;
       max-width: 36rem;
       margin-bottom: 18px;
     }
 
     .hero-sub span {
-      color: #a5b4fc;
+      color: #c4b5fd;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .btn-primary {
-      padding: 8px 16px;
+      padding: 9px 18px;
       border-radius: 999px;
       border: none;
-      background: radial-gradient(circle at 0 0, #6366f1, #4f46e5);
+      background: radial-gradient(circle at 0 0, #a855f7, #7c3aed);
       color: white;
       font-size: 0.9rem;
       font-weight: 500;
       cursor: pointer;
-      box-shadow: 0 14px 30px rgba(79,70,229,0.55);
+      box-shadow: 0 16px 40px rgba(124, 58, 237, 0.7);
     }
 
     .btn-primary:hover {
-      filter: brightness(1.05);
+      filter: brightness(1.06);
       transform: translateY(-1px);
     }
 
     .btn-ghost {
-      padding: 8px 14px;
+      padding: 9px 15px;
       border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.55);
-      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(8, 5, 33, 0.96);
       color: #e5e7eb;
       font-size: 0.85rem;
       cursor: pointer;
     }
 
     .btn-ghost:hover {
-      background: rgba(15,23,42,1);
+      background: rgba(15, 23, 42, 1);
     }
 
     .hero-meta {
@@ -204,6 +254,7 @@
       gap: 14px;
       font-size: 0.8rem;
       color: var(--muted);
+      margin-top: 4px;
     }
 
     .hero-meta span {
@@ -215,26 +266,27 @@
     .hero-meta-dot {
       width: 4px;
       height: 4px;
-      border-radius: 99px;
-      background: rgba(148,163,184,0.8);
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.9);
     }
 
     .hero-side {
-      background: radial-gradient(circle at 0 0, rgba(79,70,229,0.25), rgba(15,23,42,0.98));
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(30, 64, 175, 0.12));
       border-radius: var(--radius-xl);
       padding: 18px 18px 16px;
-      border: 1px solid rgba(79,70,229,0.65);
-      box-shadow: 0 18px 40px rgba(15,23,42,0.9);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.85);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      gap: 12px;
     }
 
     .side-label {
-      font-size: 0.73rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: #e5e7eb;
+      color: #9ca3ff;
       margin-bottom: 4px;
     }
 
@@ -247,27 +299,64 @@
     .side-item {
       display: flex;
       justify-content: space-between;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       padding: 4px 0;
-      color: #e5e7eb;
     }
 
     .side-item span:last-child {
       color: #c7d2fe;
     }
 
+    .side-metric-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+      font-size: 0.74rem;
+    }
+
+    .side-metric {
+      background: radial-gradient(circle at 0 0, rgba(124, 58, 237, 0.35), rgba(15, 23, 42, 0.98));
+      border-radius: 14px;
+      padding: 6px 8px;
+      border: 1px solid rgba(88, 28, 135, 0.9);
+      text-align: left;
+    }
+
+    .side-metric-label {
+      color: var(--muted);
+      font-size: 0.7rem;
+      margin-bottom: 2px;
+    }
+
+    .side-metric-value {
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+
     section {
-      margin-bottom: 32px;
+      margin-bottom: 30px;
       padding: 18px 18px 16px;
       border-radius: var(--radius-lg);
-      background: rgba(15,23,42,0.92);
+      background: radial-gradient(circle at top left, rgba(30, 64, 175, 0.2), rgba(8, 5, 33, 0.98));
       border: 1px solid var(--border);
-      box-shadow: 0 14px 36px rgba(0,0,0,0.65);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9);
     }
 
     section h2 {
-      font-size: 1.05rem;
-      margin: 0 0 12px;
+      font-size: 1rem;
+      margin: 0 0 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    section h2 span {
+      display: inline-block;
+      width: 6px;
+      height: 14px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #7c3aed, #f97316);
     }
 
     .section-subtitle {
@@ -279,42 +368,44 @@
     .about-text {
       font-size: 0.9rem;
       color: #e5e7eb;
-      line-height: 1.5;
+      line-height: 1.55;
+      margin-bottom: 8px;
     }
 
     .tag-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
+      gap: 7px;
+      margin-top: 6px;
     }
 
     .tag {
       font-size: 0.78rem;
-      padding: 4px 9px;
+      padding: 3px 9px;
       border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.55);
+      border: 1px solid rgba(148, 163, 184, 0.7);
       color: #e5e7eb;
-      background: rgba(15,23,42,0.8);
+      background: rgba(8, 5, 33, 0.96);
     }
 
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 10px;
       font-size: 0.82rem;
     }
 
     .skill-card {
-      padding: 10px;
+      padding: 10px 10px 9px;
       border-radius: 14px;
-      background: radial-gradient(circle at 10% 0, rgba(79,70,229,0.18), rgba(15,23,42,0.95));
-      border: 1px solid rgba(55,65,81,0.9);
+      background: linear-gradient(145deg, rgba(17, 24, 39, 0.96), rgba(15, 23, 42, 0.98));
+      border: 1px solid rgba(55, 65, 81, 0.9);
     }
 
     .skill-card h3 {
       font-size: 0.86rem;
       margin: 0 0 6px;
+      color: #e5e7eb;
     }
 
     .skill-card ul {
@@ -325,33 +416,44 @@
     }
 
     .skill-card li {
-      margin-bottom: 2px;
+      margin-bottom: 3px;
     }
 
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
       gap: 12px;
+    }
+
+    @media (max-width: 880px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .project-card {
       padding: 12px;
       border-radius: 16px;
-      background: rgba(24,33,58,0.96);
-      border: 1px solid rgba(55,65,81,0.95);
+      background: radial-gradient(circle at top left, rgba(124, 58, 237, 0.35), rgba(15, 23, 42, 0.99));
+      border: 1px solid rgba(88, 28, 135, 0.95);
       display: flex;
       flex-direction: column;
       gap: 6px;
-      font-size: 0.85rem;
+      font-size: 0.86rem;
+    }
+
+    .project-card.secondary {
+      background: rgba(8, 5, 33, 0.98);
+      border-color: rgba(55, 65, 81, 0.95);
     }
 
     .project-title {
       font-weight: 600;
-      font-size: 0.92rem;
+      font-size: 0.94rem;
     }
 
     .project-meta {
-      font-size: 0.75rem;
+      font-size: 0.77rem;
       color: var(--muted);
     }
 
@@ -366,15 +468,59 @@
       font-size: 0.75rem;
       padding: 2px 7px;
       border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.7);
+      border: 1px solid rgba(148, 163, 184, 0.7);
       color: #e5e7eb;
-      background: rgba(15,23,42,0.9);
+      background: rgba(8, 5, 33, 0.96);
+    }
+
+    .infra-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 10px;
+      font-size: 0.83rem;
+    }
+
+    .infra-card {
+      padding: 10px;
+      border-radius: 14px;
+      background: linear-gradient(145deg, rgba(8, 5, 33, 0.98), rgba(17, 24, 39, 0.98));
+      border: 1px solid rgba(55, 65, 81, 0.95);
+    }
+
+    .infra-card h3 {
+      font-size: 0.86rem;
+      margin: 0 0 6px;
+    }
+
+    .infra-card ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      color: var(--muted);
+    }
+
+    .infra-card li {
+      margin-bottom: 3px;
+    }
+
+    .contact-body {
+      font-size: 0.9rem;
+      color: #e5e7eb;
+    }
+
+    .contact-body a {
+      color: #c4b5fd;
+      text-decoration: none;
+    }
+
+    .contact-body a:hover {
+      text-decoration: underline;
     }
 
     footer {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0 16px 32px;
+      padding: 0 16px 26px;
       font-size: 0.78rem;
       color: var(--muted);
       display: flex;
@@ -384,14 +530,13 @@
     }
 
     footer a {
-      color: #9ca3ff;
+      color: #a5b4fc;
       text-decoration: none;
     }
 
     footer a:hover {
       text-decoration: underline;
     }
-
   </style>
 </head>
 <body>
@@ -401,40 +546,46 @@
         <div class="avatar"></div>
         <div class="brand-text">
           <span>David Adams</span>
-          <span>Data science · systems · experiments</span>
+          <span>Data science · ML systems · infra-curious</span>
         </div>
       </div>
       <nav>
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
+        <a href="#infra">Lab</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
 
     <section class="hero">
       <div class="hero-main">
-        <div class="pill">
-          <div class="pill-dot"></div>
-          <span>Building a personal data & systems lab</span>
-        </div>
-        <h1>Data science master's student turning infrastructure and models into real-world leverage.</h1>
-        <p class="hero-sub">
-          David Adams — studying data science, building a home lab, and using code, statistics, and systems thinking
-          to solve practical problems in analytics, automation, and decision-making. <span>This site is where the projects land.</span>
-        </p>
-        <div class="hero-actions">
-          <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })">
-            View projects
-          </button>
-          <button class="btn-ghost" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })">
-            Get in touch
-          </button>
-        </div>
-        <div class="hero-meta">
-          <span><span class="hero-meta-dot"></span> MS Data Science (in progress)</span>
-          <span><span class="hero-meta-dot"></span> Cloud-native home lab on QNAP + PC</span>
-          <span><span class="hero-meta-dot"></span> Interested in DS, infra, and founder paths</span>
+        <div class="hero-main-inner">
+          <div class="pill">
+            <div class="pill-dot"></div>
+            <span>MS-DS student · Building an ML & infra lab</span>
+          </div>
+          <h1>
+            <span class="hero-title-highlight">Data science & ML systems</span> with real infrastructure behind them.
+          </h1>
+          <p class="hero-sub">
+            I’m David Adams — a data science master’s student wiring together statistics, ML, and
+            a custom home lab (QNAP + gaming rig + Cloudflare) to build
+            <span>production-shaped projects</span> instead of class homework.
+          </p>
+          <div class="hero-actions">
+            <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })">
+              View technical projects
+            </button>
+            <button class="btn-ghost" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })">
+              Contact / collaborate
+            </button>
+          </div>
+          <div class="hero-meta">
+            <span><span class="hero-meta-dot"></span> MS in Data Science (in progress)</span>
+            <span><span class="hero-meta-dot"></span> Python · R · SQL · Docker · Linux</span>
+            <span><span class="hero-meta-dot"></span> Interested in DS, ML eng, and founder paths</span>
+          </div>
         </div>
       </div>
 
@@ -443,153 +594,213 @@
           <div class="side-label">Current focus</div>
           <div class="side-title">Becoming a dangerous generalist.</div>
           <div class="side-item">
-            <span>Primary track</span>
-            <span>Data science & statistics</span>
+            <span>Core</span>
+            <span>Statistics, inference, ML</span>
           </div>
           <div class="side-item">
-            <span>Supporting skills</span>
-            <span>ML, infra, automation</span>
+            <span>Edge</span>
+            <span>Infra, networking, automation</span>
           </div>
           <div class="side-item">
-            <span>Tooling</span>
-            <span>Python · R · SQL · Linux</span>
+            <span>Direction</span>
+            <span>Real-world DS + early-stage products</span>
           </div>
-        </div>
-        <div>
-          <div class="side-label" style="margin-top: 10px;">Next actions</div>
-          <div class="side-item">
-            <span>• Ship practical DS projects</span>
-          </div>
-          <div class="side-item">
-            <span>• Document experiments clearly</span>
-          </div>
-          <div class="side-item">
-            <span>• Use this site as a changelog</span>
+          <div class="side-metric-row">
+            <div class="side-metric">
+              <div class="side-metric-label">Lab</div>
+              <div class="side-metric-value">QNAP + 13700F/4060 Ti</div>
+            </div>
+            <div class="side-metric">
+              <div class="side-metric-label">Access</div>
+              <div class="side-metric-value">Cloudflare Zero Trust</div>
+            </div>
+            <div class="side-metric">
+              <div class="side-metric-label">Stack</div>
+              <div class="side-metric-value">Python · R · SQL · VS Code</div>
+            </div>
           </div>
         </div>
       </aside>
     </section>
 
     <section id="about">
-      <h2>About</h2>
-      <p class="section-subtitle">Where I’m coming from and where I’m aiming.</p>
+      <h2><span></span>About</h2>
+      <p class="section-subtitle">Where I am now and what I’m building toward.</p>
       <p class="about-text">
-        I’m a data science master’s student who cares less about flashy dashboards and more about
-        building systems that are statistically sound, observable, and actually used. I’m currently
-        combining formal coursework with hands-on projects in my own lab: a QNAP NAS + gaming PC setup
-        wired through Cloudflare, Jupyter, and VS Code.
+        I’m pursuing a Master’s in Data Science while building my own lab environment to experiment with
+        statistics, ML models, and infrastructure. My bias is toward
+        <strong>systems that would actually run somewhere real</strong>:
+        versioned code, reproducible experiments, and secure access.
       </p>
       <p class="about-text">
-        Long term, I’m aiming at roles and projects where I can own the full loop: from collecting and
-        structuring data, to modeling and experimentation, to shipping tools or products that create
-        real value — as a data scientist, engineer, or founder.
+        Long term I’m aiming at roles where I can own the loop from
+        <em>data</em> → <em>model</em> → <em>decision</em>: experimentation,
+        modeling, and the infra that glues everything together — as a data scientist,
+        ML engineer, or founder.
       </p>
       <div class="tag-row">
         <span class="tag">MS-DS student</span>
         <span class="tag">Statistics & inference</span>
-        <span class="tag">Experimentation mindset</span>
-        <span class="tag">Infra-curious</span>
+        <span class="tag">ML & experimentation</span>
+        <span class="tag">Home-lab builder</span>
       </div>
     </section>
 
     <section id="skills">
-      <h2>Skills & tools</h2>
-      <p class="section-subtitle">Growing depth in the fundamentals, breadth across the stack.</p>
+      <h2><span></span>Skills & tools</h2>
+      <p class="section-subtitle">Depth in the math & modeling, breadth across the stack.</p>
       <div class="skills-grid">
         <div class="skill-card">
           <h3>Data & modeling</h3>
           <ul>
             <li>Python (pandas, NumPy, scikit-learn)</li>
-            <li>R for statistical modeling</li>
-            <li>SQL, relational databases</li>
-            <li>Experimental design, A/B testing</li>
+            <li>R for statistical modeling & inference</li>
+            <li>Classic ML: regression, trees, ensembles</li>
+            <li>Experimental design, A/B testing, power</li>
           </ul>
         </div>
         <div class="skill-card">
-          <h3>Systems & tooling</h3>
+          <h3>Data systems</h3>
           <ul>
-            <li>Linux, Docker, VS Code</li>
-            <li>JupyterLab, Git, CLI workflows</li>
-            <li>Cloudflare Tunnels & Pages</li>
-            <li>Home lab / NAS setup</li>
+            <li>SQL & relational database design</li>
+            <li>ETL / data prep in Python & SQL</li>
+            <li>JupyterLab, VS Code, Git workflows</li>
+            <li>Dashboards & basic analytics reporting</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3>Infra & automation</h3>
+          <ul>
+            <li>Linux, Docker, containerized services</li>
+            <li>Cloudflare Tunnels & Pages (Zero Trust)</li>
+            <li>NAS-backed lab: QNAP + PC + networking</li>
+            <li>Home Assistant & automation wiring</li>
           </ul>
         </div>
         <div class="skill-card">
           <h3>Communication</h3>
           <ul>
-            <li>Clear write-ups and project docs</li>
-            <li>Explaining trade-offs & design</li>
-            <li>Teaching/learning mindset</li>
+            <li>Structured write-ups & docs</li>
+            <li>Explaining trade-offs to non-experts</li>
+            <li>Teaching-oriented visualizations</li>
           </ul>
         </div>
       </div>
     </section>
 
     <section id="projects">
-      <h2>Projects</h2>
+      <h2><span></span>Projects</h2>
       <p class="section-subtitle">
-        This section will grow as I ship more work. For now, it’s a snapshot of the systems and ideas I’m building.
+        This is a snapshot of the systems and experiments I’m building. As I ship more, this section will turn into
+        full case studies with code and write-ups.
       </p>
       <div class="projects-grid">
         <div class="project-card">
-          <div class="project-title">Personal data & compute lab</div>
+          <div class="project-title">Personal ML & data lab</div>
           <div class="project-meta">Infra · Networking · Automation</div>
           <p>
-            QNAP NAS + gaming PC setup with JupyterLab, VS Code, and Home Assistant exposed securely through
-            Cloudflare Tunnels. Designed as a foundation for data science, experimentation, and future projects.
+            Designed and built a home lab centered on a QNAP NAS and a 13700F/RTX 4060 Ti workstation, all accessible
+            through Cloudflare Zero Trust. JupyterLab, VS Code, and Home Assistant are exposed via tunnels instead of
+            open ports, giving me a secure base to run experiments from anywhere.
           </p>
           <div class="project-tags">
             <span class="project-tag">QNAP</span>
             <span class="project-tag">Docker</span>
             <span class="project-tag">Cloudflare</span>
-            <span class="project-tag">Dev environment</span>
+            <span class="project-tag">JupyterLab</span>
+            <span class="project-tag">VS Code</span>
           </div>
         </div>
-        <div class="project-card">
+
+        <div class="project-card secondary">
           <div class="project-title">Statistical study sheets (in progress)</div>
-          <div class="project-meta">Python · Visualization · Learning systems</div>
+          <div class="project-meta">Python · R · Visualization · Education</div>
           <p>
-            Building interactive Jupyter-based “study sheets” that visualize core statistics concepts (distributions,
-            hypothesis testing, inference) to deepen intuition and create reusable learning assets.
+            Building interactive Jupyter notebooks that visualize distributions, hypothesis tests, and inference
+            workflows. The goal is to hard-wire intuition for statistical tooling I’ll use in ML and experimentation,
+            and to package them as reusable learning assets.
           </p>
           <div class="project-tags">
             <span class="project-tag">Python</span>
+            <span class="project-tag">R</span>
             <span class="project-tag">Statistics</span>
-            <span class="project-tag">JupyterLab</span>
+            <span class="project-tag">Visualization</span>
           </div>
         </div>
-        <div class="project-card">
-          <div class="project-title">Upcoming: Applied data projects</div>
-          <div class="project-meta">Roadmap</div>
+
+        <div class="project-card secondary">
+          <div class="project-title">Applied DS roadmap (design)</div>
+          <div class="project-meta">Roadmap · DS/ML · Product thinking</div>
           <p>
-            I’m currently designing projects aligned with real data science roles: experiment analysis, forecasting,
-            operations analytics, and domain-focused work in areas I care about (music, finance, systems).
+            Designing a ladder of projects that move from intern-ready data work (cleaning, EDA, basic models) to
+            production-shaped experiments and early founder projects in domains I care about: music, finance, and
+            operations analytics.
           </p>
           <div class="project-tags">
             <span class="project-tag">Data science</span>
             <span class="project-tag">Experimentation</span>
-            <span class="project-tag">Real-world impact</span>
+            <span class="project-tag">Product mindset</span>
           </div>
         </div>
       </div>
     </section>
 
+    <section id="infra">
+      <h2><span></span>Lab & infrastructure</h2>
+      <p class="section-subtitle">
+        The lab is where I practice being an engineer, not just a notebook user.
+      </p>
+      <div class="infra-grid">
+        <div class="infra-card">
+          <h3>Hardware</h3>
+          <ul>
+            <li>QNAP NASbook with SSD pool for projects & scratch</li>
+            <li>Gaming rig: Intel i7-13700F, RTX 4060 Ti</li>
+            <li>10 GbE networking and remote-access setup</li>
+          </ul>
+        </div>
+        <div class="infra-card">
+          <h3>Environment</h3>
+          <ul>
+            <li>JupyterLab running on QNAP for DS/ML work</li>
+            <li>VS Code tunnels for remote coding</li>
+            <li>Home Assistant for automating the environment</li>
+          </ul>
+        </div>
+        <div class="infra-card">
+          <h3>Security & access</h3>
+          <ul>
+            <li>Cloudflare Tunnels for all exposed services</li>
+            <li>No raw port forwards; Zero Trust access control</li>
+            <li>Separate domains for Jupyter, HA, and future tools</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <section id="contact">
-      <h2>Contact</h2>
-      <p class="section-subtitle">If you want to talk about data science, systems, or building things, reach out.</p>
-      <p class="about-text">
-        Best way to reach me: <a href="mailto:davidwhittemoreadams@outlook.com" style="color:#a5b4fc;">davidwhittemoreadams@outlook.com</a><br />
-        You can also find me on LinkedIn: <a href="https://www.linkedin.com/in/davidadams626" target="_blank" rel="noreferrer" style="color:#a5b4fc;">LinkedIn profile</a>.
+      <h2><span></span>Contact</h2>
+      <p class="section-subtitle">
+        Open to talking about data science, ML, experimentation, and building systems.
       </p>
-      <p class="about-text">
-        This site will evolve as I ship more projects. Right now it’s the starting point: a simple, honest snapshot of where I am and where I’m headed.
-      </p>
+      <div class="contact-body">
+        <p>
+          Email:
+          <a href="mailto:davidwhittemoreadams@outlook.com">YOUR_EMAIL_HERE</a><br />
+          LinkedIn:
+          <a href="https://www.linkedin.com/in/davidadams626" target="_blank" rel="noreferrer">Your LinkedIn profile</a>
+        </p>
+        <p>
+          If you’re working on data-heavy problems, ML systems, or infra for analytics products and think I could
+          help, I’m interested in internships, collaborations, and early-stage projects.
+        </p>
+      </div>
     </section>
   </main>
 
   <footer>
     <span>© <span id="year"></span> David Adams.</span>
-    <span>Built with HTML/CSS, deployed via Cloudflare Pages.</span>
+    <span>Built in a custom lab · Deployed via Cloudflare Pages.</span>
   </footer>
 
   <script>
