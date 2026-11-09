@@ -66,7 +66,7 @@
 
   /* The board: real schedules, Pasadena time. */
   const SYSTEMS = [
-    { name: 'QuickBooks import', group: 'IVB', kind: 'ivb', at: (d) => range(8 * 60, 18 * 60, 30) },
+    { name: 'QuickBooks import', group: 'IVB', kind: 'ivb', at: (d) => range(6 * 60, 18 * 60, 5) },
     { name: 'Sales refresh', group: 'IVB', kind: 'ivb', at: () => [150], note: 'buyers, ranking, first emails' },
     { name: 'Trading cycle', group: 'Trading', kind: 'trade', at: () => range(0, 1439, 15) },
     { name: 'Trade records', group: 'Trading', kind: 'trade', at: () => [300] },
